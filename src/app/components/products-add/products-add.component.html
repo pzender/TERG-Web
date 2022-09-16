@@ -1,0 +1,34 @@
+<div class="text-bg-dark">
+    <h6 class="h6">New product</h6>
+    <form (ngSubmit)="addProduct()" #form="ngForm" class="needs-validation">
+        <label for="inputName" class="form-label">Name</label>
+        <input 
+            type="text" id="inputName" placeholder="product name" name="name"
+            [class]="{'form-control': true, 'is-valid': name.valid, 'is-invalid': name.invalid}"
+            [(ngModel)]="model.name" #name="ngModel" required
+        >
+        <span *ngIf="name.valid" class="valid-feedback"> Looks good! </span>
+        <span *ngIf="name.invalid" class="invalid-feedback"> We need a name </span>
+
+        <label for="inputCode" class="form-label">Code</label>
+        <input 
+            type="text" id="inputCode" placeholder="product code" name="code"
+            [class]="{'form-control': true, 'is-valid': code.valid, 'is-invalid': code.invalid}"
+            [(ngModel)]="model.code" #code="ngModel" required pattern="\d{6}"
+        >
+        <span *ngIf="code.valid" class="valid-feedback"> Looks good! </span>
+        <span *ngIf="code.invalid" class="invalid-feedback"> Code has 6 digits </span>
+
+        <label for="inputPrice" class="form-label">Price</label>
+        <input 
+            type="text" id="inputPrice" placeholder="product price" name="price"
+            [class]="{'form-control': true, 'is-valid': price.valid, 'is-invalid': price.invalid}"
+            [(ngModel)]="model.price" #price="ngModel" required pattern="\d+[,\.]\d{2}"
+        >
+        <span *ngIf="price.valid" class="valid-feedback"> Looks good! </span>
+        <span *ngIf="price.invalid" class="invalid-feedback"> Price has 2 decimal places </span>
+
+        <hr>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+    </form>
+</div>

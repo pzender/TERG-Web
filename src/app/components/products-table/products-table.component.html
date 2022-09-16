@@ -1,0 +1,14 @@
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of data | async">
+            <td>{{item.name}}</td>
+            <td>{{item.price | currency:'NZD'}}</td>
+        </tr>
+    </tbody>
+</table>

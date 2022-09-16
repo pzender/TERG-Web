@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col col-4 text-bg-dark">
+        <form>
+            <label for="filterName" class="form-label">Name</label>
+            <input #search
+                type="text" class="form-control" id="filterName" placeholder="search by name"
+                [value] = "filters.name"
+                (change) = "setName(search.value)"
+            >
+
+            <label for="filterPriceFrom" class="form-label">From {{filters.priceFrom | currency:'NZD'}}</label>
+            <input #priceFrom
+                type="range" class="form-range" id="filterPriceFrom"
+                min = "0"
+                max = "{{MAX_PRICE}}"
+                [value]="filters.priceFrom"
+                (change)="setPriceFrom(priceFrom.value)"
+            >
+
+            <label for="filterPriceTo" class="form-label">To {{filters.priceTo | currency:'NZD'}}</label>
+            <input #priceTo
+                type="range" class="form-range" id="filterPriceTo"
+                min = "0"
+                max = "{{MAX_PRICE}}"
+                [value]="filters.priceTo"
+                (change)="setPriceTo(priceTo.value)"
+            >
+
+        </form>
+    </div>
+    <div class="col col-8">
+        <app-products-table [data]="products$"></app-products-table>
+        <app-products-add (added)="updateData()"></app-products-add>
+    </div>
+</div>
